@@ -1,0 +1,27 @@
+Pancakes:
+  ingredients:
+  - Flour
+  - Sugar
+  - Baking powder
+  - Milk
+  - Eggs
+  - Butter
+  steps:
+  - In a bowl, mix flour, sugar, and baking powder
+  - Add milk, eggs, and melted butter, and stir until smooth
+  - Heat a pan and pour the batter to form small pancakes
+  - Cook until bubbles form on the surface, then flip and cook the other side
+  - Serve with syrup or fruit
+
+Fruit_Salad:
+  ingredients:
+  - Apple
+  - Banana
+  - Orange
+  - Grapes
+  - Honey
+  steps:
+  - Cut the fruit into small pieces
+  - Mix all the fruit together in a bowl
+  - Drizzle with honey and stir gently
+  - Serve chilled
