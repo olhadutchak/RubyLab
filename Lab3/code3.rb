@@ -107,8 +107,6 @@ class RecipeBook
   end
 end
 
-# === CLI ===
-
 book = RecipeBook.new
 
 def menu
