@@ -1,0 +1,87 @@
+{
+  "Pasta Carbonara": {
+    "ingredients": [
+      "Spaghetti",
+      "Bacon",
+      "Eggs",
+      "Parmesan cheese",
+      "Garlic",
+      "Salt",
+      "Pepper"
+    ],
+    "steps": [
+      "Boil spaghetti",
+      "Fry bacon",
+      "Mix eggs with cheese",
+      "Combine everything and heat up"
+    ]
+  },
+  "Omelette": {
+    "ingredients": [
+      "Eggs",
+      "Milk",
+      "Salt",
+      "Oil",
+      "Parsley"
+    ],
+    "steps": [
+      "Whisk eggs",
+      "Fry the mixture",
+      "Serve hot"
+    ]
+  },
+  "Gazpacho Soup": {
+    "ingredients": [
+      "Tomatoes",
+      "Cucumbers",
+      "Bell pepper",
+      "Garlic",
+      "Olive oil",
+      "Vinegar",
+      "Salt",
+      "Pepper"
+    ],
+    "steps": [
+      "Chop vegetables",
+      "Blend everything",
+      "Chill before serving"
+    ]
+  },
+  "Caesar Salad": {
+    "ingredients": [
+      "Lettuce",
+      "Chicken",
+      "Croutons",
+      "Parmesan cheese",
+      "Caesar dressing"
+    ],
+    "steps": [
+      "Grill chicken",
+      "Toss ingredients together",
+      "Serve with dressing"
+    ]
+  },
+  "Pancakes": {
+    "ingredients": [
+      "Flour",
+      "Milk",
+      "Eggs",
+      "Sugar",
+      "Butter"
+    ],
+    "steps": [
+      "Mix ingredients",
+      "Pour batter onto a pan",
+      "Flip and cook",
+      "Serve with syrup"
+    ]
+  },
+  "pasta": {
+    "ingredients": [
+      "we"
+    ],
+    "steps": [
+      "sdf,dff"
+    ]
+  }
+}
