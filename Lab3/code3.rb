@@ -16,8 +16,17 @@ class Recipe
 end
 
 class RecipeBook
+  attr_accessor :recipes
   def initialize
     @recipes = {}
+  end
+
+  def to_h
+    data = {}
+    @recipes.each do |name, recipe|
+      data[name] = recipe.to_h
+    end
+    data
   end
 
   def add_recipe(recipe)
@@ -64,17 +73,12 @@ class RecipeBook
   end
 
   def save_to_file(filename)
-    data = {}
-    @recipes.each do |name, recipe|
-      data[name] = recipe.to_h
-    end
-
     case File.extname(filename).downcase
     when '.json'
-      File.write(filename, JSON.pretty_generate(data))
+      File.write(filename, JSON.pretty_generate(to_h))
       puts "Recipes saved to \"#{filename}\" in JSON format."
     when '.yaml', '.yml'
-      File.write(filename, data.to_yaml)
+      File.write(filename, recipe.to_yaml)
       puts "Recipes saved to \"#{filename}\" in YAML format."
     else
       puts "Unsupported file format. Only JSON and YAML are supported."
