@@ -61,9 +61,18 @@ def new_ingredient_field
   end
 
    def new_step_field
-    @step = Step.new
-    render partial: 'step_fields', locals: { f: nil, step: @step, index: params[:index] }
-  end
+  @step = Step.new
+  @index = params[:index]
+
+  form_builder = ActionView::Helpers::FormBuilder.new(
+    "recipe[steps_attributes][#{@index}]",
+    @step,
+    view_context,
+    {}
+  )
+
+  render partial: 'step_fields', locals: { f: form_builder, index: @index }
+end
 
   private
 

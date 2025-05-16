@@ -39,11 +39,11 @@
   </datalist>
 
   <h5>Кроки приготування</h5>
-  <div id="steps-container">
-    <%= f.fields_for :steps do |step_form| %>
-      <%= render 'step_fields', f: step_form, index: step_form.index || Time.now.to_i %>
-    <% end %>
-  </div>
+<div id="steps-container">
+  <%= f.fields_for :steps do |step| %>
+    <%= render 'step_fields', f: step, index: Time.now.to_i %>
+  <% end %>
+</div>
 
   <button type="button" id="add-step" class="btn btn-outline-primary mb-3">➕ Додати крок</button>
 
@@ -82,12 +82,21 @@
         });
       }
 
-      document.addEventListener("click", (e) => {
-        if (e.target.matches(".remove_fields")) {
-          e.preventDefault();
-          e.target.closest(".nested-fields").remove();
-        }
-      });
+     document.addEventListener("click", (e) => {
+  if (e.target.matches(".remove_fields")) {
+    e.preventDefault();
+
+    const wrapper = e.target.closest(".nested-fields");
+    const destroyInput = wrapper.querySelector('input[name*="_destroy"]');
+
+    if (destroyInput) {
+      destroyInput.value = "1";
+      wrapper.style.display = "none";
+    } else {
+      wrapper.remove(); 
+    }
+  }
+});
     });
   </script>
 <% end %>

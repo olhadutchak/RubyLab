@@ -1,9 +1,10 @@
-<div class="nested-fields mb-3 border rounded p-3">
-  <label for="recipe_steps_attributes_<%= index %>_description">Крок</label>
-  <textarea name="recipe[steps_attributes][<%= index %>][description]" id="recipe_steps_attributes_<%= index %>_description" class="form-control"></textarea>
+<div class="nested-fields mb-3 border p-3 rounded">
+  <div class="mb-2">
+    <%= f.label :description, "Крок" %>
+    <%= f.text_area :description, class: "form-control" %>
+  </div>
 
-  <input type="hidden" name="recipe[steps_attributes][<%= index %>][_destroy]" id="recipe_steps_attributes_<%= index %>__destroy" value="false" />
-  
+  <%= f.hidden_field :_destroy %>
   <div class="col-md-2 d-flex align-items-end">
       <%= link_to "❌", "#", class: "remove_fields btn btn-outline-danger" %>
     </div>
