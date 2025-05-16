@@ -1,0 +1,93 @@
+<%= form_with model: recipe, local: true do |f| %>
+  <% if recipe.errors.any? %>
+    <div class="alert alert-danger">
+      <h4>Помилки:</h4>
+      <ul>
+        <% recipe.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= f.label :name, "Назва рецепту" %>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :description, "Опис" %>
+    <%= f.text_area :description, class: "form-control" %>
+  </div>
+
+  <h5>Інгредієнти</h5>
+
+  <div id="ingredients-container">
+    <%= f.fields_for :recipe_ingredients do |ri| %>
+      <%= render 'recipe_ingredient_fields', f: ri %>
+    <% end %>
+  </div>
+
+  <%= button_tag type: 'button', id: 'add-ingredient', class: 'btn btn-outline-primary mb-3' do %>
+    ➕ Додати інгредієнт
+  <% end %>
+
+  <datalist id="ingredient-list">
+    <% Ingredient.order(:name).pluck(:name).each do |ingredient_name| %>
+      <option value="<%= ingredient_name %>"></option>
+    <% end %>
+  </datalist>
+
+  <h5>Кроки приготування</h5>
+  <div id="steps-container">
+    <%= f.fields_for :steps do |step_form| %>
+      <%= render 'step_fields', f: step_form, index: step_form.index || Time.now.to_i %>
+    <% end %>
+  </div>
+
+  <button type="button" id="add-step" class="btn btn-outline-primary mb-3">➕ Додати крок</button>
+
+  <%= f.submit "Зберегти рецепт", class: "btn btn-primary mt-3" %>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const addIngredientBtn = document.getElementById("add-ingredient");
+      const ingredientsContainer = document.getElementById("ingredients-container");
+
+      if (addIngredientBtn && ingredientsContainer) {
+        let ingredientIndex = Date.now();
+        addIngredientBtn.addEventListener("click", () => {
+          fetch(`/recipes/new_ingredient_field?index=${ingredientIndex}`)
+            .then(response => response.text())
+            .then(html => {
+              ingredientsContainer.insertAdjacentHTML("beforeend", html);
+              ingredientIndex++;
+            });
+        });
+      }
+
+      const addStepBtn = document.getElementById("add-step");
+      const stepsContainer = document.getElementById("steps-container");
+
+      if (addStepBtn && stepsContainer) {
+        let stepIndex = Date.now();
+        addStepBtn.addEventListener("click", () => {
+          fetch(`/recipes/new_step_field?index=${stepIndex}`)
+            .then(response => response.text())
+            .then(html => {
+              stepsContainer.insertAdjacentHTML("beforeend", html);
+              stepIndex++;
+            })
+            .catch(console.error);
+        });
+      }
+
+      document.addEventListener("click", (e) => {
+        if (e.target.matches(".remove_fields")) {
+          e.preventDefault();
+          e.target.closest(".nested-fields").remove();
+        }
+      });
+    });
+  </script>
+<% end %>

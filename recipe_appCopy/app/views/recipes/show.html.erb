@@ -1,0 +1,23 @@
+<h1><%= @recipe.name %></h1>
+
+<p><strong>Опис:</strong> <%= @recipe.description %></p>
+
+<h3>Інгредієнти</h3>
+<ul>
+  <% @recipe.recipe_ingredients.each do |ri| %>
+    <li>
+      <%= ri.ingredient_name.presence || ri.ingredient&.name %> —
+      <%= ri.quantity %> <%= ri.unit %>
+    </li>
+  <% end %>
+</ul>
+
+<h3>Кроки приготування</h3>
+<ol>
+  <% @recipe.steps.each do |step| %>
+    <li><%= step.description %></li>
+  <% end %>
+</ol>
+
+<%= link_to "Редагувати", edit_recipe_path(@recipe), class: "btn btn-warning" %>
+<%= link_to "Назад до списку", recipes_path, class: "btn btn-secondary" %>

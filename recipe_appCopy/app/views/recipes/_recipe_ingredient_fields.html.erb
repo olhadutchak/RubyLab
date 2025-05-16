@@ -1,0 +1,22 @@
+<div class="nested-fields mb-3 border rounded p-3">
+  <div class="row">
+    <div class="col-md-4">
+      <%= f.label :ingredient_name, "Назва інгредієнта" %>
+      <%= f.text_field :ingredient_name, value: f.object.ingredient_name, class: "form-control", list: "ingredient-list", autocomplete: "off" %>
+    </div>
+    <div class="col-md-3">
+      <%= f.label :quantity, "Кількість" %>
+      <%= f.number_field :quantity, class: "form-control", step: 0.1 %>
+    </div>
+    <div class="col-md-3">
+      <%= f.label :unit, "Одиниця виміру" %>
+      <%= f.select :unit,
+        ["г", "кг", "л", "мл", "шт", "ч.л.", "ст.л.", "склянка", "пучок", "щіпка"],
+        { include_blank: "Оберіть одиницю" },
+        class: "form-select" %>
+    </div>
+    <div class="col-md-2 d-flex align-items-end">
+      <%= link_to "❌", "#", class: "remove_fields btn btn-outline-danger" %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<h1 class="mb-4">Рецепти</h1>
+
+<%= link_to "Новий рецепт", new_recipe_path, class: "btn btn-primary mb-3" %>
+
+<% if @recipes.any? %>
+  <div class="row">
+    <% @recipes.each do |recipe| %>
+      <div class="col-md-4">
+        <div class="card mb-3">
+          <div class="card-body">
+            <h5 class="card-title"><%= recipe.name %></h5>
+            <p class="card-text"><%= truncate(recipe.description, length: 100) %></p>
+            <%= link_to "Переглянути", recipe_path(recipe), class: "btn btn-sm btn-outline-primary" %>
+            <%= link_to "Редагувати", edit_recipe_path(recipe), class: "btn btn-sm btn-outline-secondary" %>
+           <%= button_to 'Видалити', recipe_path(recipe),
+    method: :delete,
+    class: "btn btn-danger",
+    onclick: "return confirm('Ви впевнені, що хочете видалити цей рецепт?');" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <p>Немає жодного рецепта. <%= link_to "Додати новий", new_recipe_path %></p>
+<% end %>
